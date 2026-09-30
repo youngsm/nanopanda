@@ -1,0 +1,27 @@
+[project]
+name = "nanopanda"
+version = "0.1.0"
+description = "Minimal Sonata/LitePT self-supervised pretraining on PILArNet"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "torch==2.10.0",
+    "numpy",
+    "h5py",
+    "spconv-cu126",
+    "flash-attn==2.8.3+cu126torch2.10",
+]
+
+[project.optional-dependencies]
+wandb = ["wandb"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+flash-attn = { url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.0/flash_attn-2.8.3%2Bcu126torch2.10-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl" }
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
