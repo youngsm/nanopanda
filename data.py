@@ -21,7 +21,7 @@ class PILArNet(Dataset):
 
     def __init__(self, root, split, min_points=1024, energy_threshold=0.13, max_len=-1):
         self.files = sorted(glob.glob(os.path.join(root, f"*{split}/*.h5")))
-        assert self.files, f"no {split} shards under {root}"
+        assert self.files, f"no {split} shards under {root!r}: set PILARNET_DATA_ROOT (see README)"
         self.rows = [
             np.flatnonzero(np.load(f.replace(".h5", "_points.npy")) >= min_points)
             for f in self.files

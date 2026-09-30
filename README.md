@@ -18,8 +18,18 @@ evaluate it.
 uv sync                    # add --extra wandb for logging
 ```
 
-Point `--data_root` (or `PILARNET_DATA_ROOT`) at a PILArNet directory with `train/`
-and `val/` HDF5 shards.
+## Data
+
+Download PILArNet-M from Hugging Face (about 160 GB for the train and val splits)
+and point `PILARNET_DATA_ROOT` at it:
+
+```bash
+export PILARNET_DATA_ROOT=/path/to/pilarnet   # also add this to your shell profile
+uvx --from huggingface_hub hf download DeepLearnPhysics/PILArNet-M --repo-type dataset \
+    --revision v2 --include "train/*" --include "val/*" --local-dir $PILARNET_DATA_ROOT
+```
+
+`--data_root=...` overrides the environment variable.
 
 ## Train
 
